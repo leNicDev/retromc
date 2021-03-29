@@ -1,0 +1,30 @@
+package packets
+
+import "github.com/leNicDev/retromc/packet"
+
+type MapChunkOutPacket struct {
+	X              int32
+	Y              int16
+	Z              int32
+	SizeX          byte
+	SizeY          byte
+	SizeZ          byte
+	CompressedSize int32
+	CompressedData []byte
+}
+
+func (p *MapChunkOutPacket) Serialize() []byte {
+	writer := packet.NewPacketWriter()
+
+	writer.WriteByte(packet.MapChunk)   // write packet id
+	writer.WriteInt32(p.X)              // write chunk x position
+	writer.WriteInt16(p.Y)              // write chunk y position
+	writer.WriteInt32(p.Z)              // write chunk z position
+	writer.WriteByte(p.SizeX)           // write chunk size x
+	writer.WriteByte(p.SizeY)           // write chunk size y
+	writer.WriteByte(p.SizeZ)           // write chunk size z
+	writer.WriteInt32(p.CompressedSize) // write compressed chunk data size
+	writer.Write(p.CompressedData)      // write compressed chunk data
+
+	return writer.Bytes()
+}

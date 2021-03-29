@@ -20,4 +20,26 @@ func handleLoginRequestInPacket(connection net.Conn, p packets.LoginRequestInPac
 
 	// write login response packet
 	connection.Write(outData)
+
+	// create spawn position packet
+	spawnPositionPacket := packets.SpawnPositionOutPacket{
+		X: 0,
+		Y: 0,
+		Z: 0,
+	}
+	outData = spawnPositionPacket.Serialize()
+
+	// write spawn position packet
+	connection.Write(outData)
+
+	// create pre chunk packet
+	preChunkPacket := packets.PreChunkOutPacket{
+		X:    0,
+		Z:    0,
+		Mode: true,
+	}
+	outData = preChunkPacket.Serialize()
+
+	// write pre chunk packet
+	connection.Write(outData)
 }

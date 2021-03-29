@@ -10,4 +10,6 @@ const (
 	SpawnPosition         byte = 0x06
 	PlayerPosition        byte = 0x0b
 	PlayerPositionAndLook byte = 0x0d
+	PreChunk              byte = 0x32
+	MapChunk              byte = 0x33
 )

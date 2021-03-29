@@ -39,6 +39,12 @@ func (w *PacketWriter) WriteShort(value uint16) {
 	w.Write(data)
 }
 
+func (w *PacketWriter) WriteInt16(value int16) {
+	data := make([]byte, SHORT_SIZE)
+	binary.BigEndian.PutUint16(data, uint16(value))
+	w.Write(data)
+}
+
 func (w *PacketWriter) WriteInt32(value int32) {
 	data := make([]byte, INT_SIZE)
 	binary.BigEndian.PutUint32(data, uint32(value))
