@@ -1,6 +1,9 @@
 package packets
 
-import "github.com/leNicDev/retromc/packet"
+import (
+	"github.com/leNicDev/retromc/level"
+	"github.com/leNicDev/retromc/packet"
+)
 
 type MapChunkOutPacket struct {
 	X              int32
@@ -11,6 +14,17 @@ type MapChunkOutPacket struct {
 	SizeZ          byte
 	CompressedSize int32
 	CompressedData []byte
+}
+
+func (p *MapChunkOutPacket) Apply(chunk level.Chunk) {
+	p.X = chunk.X
+	p.Y = chunk.Y
+	p.Z = chunk.Z
+	p.SizeX = chunk.SizeX
+	p.SizeY = chunk.SizeY
+	p.SizeZ = chunk.SizeZ
+	p.CompressedData = chunk.CompressData()
+	p.CompressedSize = int32(len(p.CompressedData))
 }
 
 func (p *MapChunkOutPacket) Serialize() []byte {

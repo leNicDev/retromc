@@ -4,6 +4,7 @@ import (
 	"log"
 	"net"
 
+	"github.com/leNicDev/retromc/level"
 	"github.com/leNicDev/retromc/packet/packets"
 )
 
@@ -41,5 +42,17 @@ func handleLoginRequestInPacket(connection net.Conn, p packets.LoginRequestInPac
 	outData = preChunkPacket.Serialize()
 
 	// write pre chunk packet
+	connection.Write(outData)
+
+	// create a new chunk
+	chunk := level.NewChunk()
+
+	// create map chunk packet
+	mapChunkPacket := packets.MapChunkOutPacket{}
+	mapChunkPacket.Apply(chunk)
+
+	outData = mapChunkPacket.Serialize()
+
+	// write map chunk packet
 	connection.Write(outData)
 }
