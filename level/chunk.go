@@ -75,9 +75,9 @@ func NewChunk() Chunk {
 		X:     0,
 		Y:     0,
 		Z:     0,
-		SizeX: CHUNK_SIZE_X,
-		SizeY: CHUNK_SIZE_Y,
-		SizeZ: CHUNK_SIZE_Z,
+		SizeX: CHUNK_SIZE_X - 1,
+		SizeY: CHUNK_SIZE_Y - 1,
+		SizeZ: CHUNK_SIZE_Z - 1,
 	}
 	chunk.fillAir()
 	return chunk
