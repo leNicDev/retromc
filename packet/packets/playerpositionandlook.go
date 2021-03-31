@@ -43,13 +43,13 @@ type PlayerPositionAndLookOutPacket struct {
 
 func (p *PlayerPositionAndLookOutPacket) Serialize() []byte {
 	w := packet.NewPacketWriter()
-	w.WriteByte(packet.PlayerPosition) // write packet id
-	w.WriteFloat64(p.X)                // write x position
-	w.WriteFloat64(p.Stance)           // write stance
-	w.WriteFloat64(p.Y)                // write y position
-	w.WriteFloat64(p.Z)                // write z position
-	w.WriteFloat32(p.Yaw)              // write yaw
-	w.WriteFloat32(p.Pitch)            // write pitch
-	w.WriteBool(p.OnGround)            // write on ground
+	w.WriteByte(packet.PlayerPositionAndLook) // write packet id
+	w.WriteFloat64(p.X)                       // write x position
+	w.WriteFloat64(p.Stance)                  // write stance
+	w.WriteFloat64(p.Y)                       // write y position
+	w.WriteFloat64(p.Z)                       // write z position
+	w.WriteFloat32(p.Yaw)                     // write yaw
+	w.WriteFloat32(p.Pitch)                   // write pitch
+	w.WriteBool(p.OnGround)                   // write on ground
 	return w.Bytes()
 }

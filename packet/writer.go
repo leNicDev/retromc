@@ -66,7 +66,7 @@ func (w *PacketWriter) WriteFloat32(value float32) {
 
 func (w *PacketWriter) WriteFloat64(value float64) {
 	bits := math.Float64bits(value)
-	data := make([]byte, FLOAT_SIZE)
+	data := make([]byte, DOUBLE_SIZE)
 	binary.BigEndian.PutUint64(data, bits)
 	w.Write(data)
 }

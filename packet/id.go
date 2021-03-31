@@ -12,4 +12,6 @@ const (
 	PlayerPositionAndLook byte = 0x0d
 	PreChunk              byte = 0x32
 	MapChunk              byte = 0x33
+	SetSlot               byte = 0x67
+	WindowItems           byte = 0x68
 )
